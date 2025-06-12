@@ -1,6 +1,8 @@
 package com.sistemagym.gym.models;
 import java.sql.Date;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -20,6 +22,11 @@ public class Mensualidades {
 
     @Column(name = "fecha_final")
     private Date fechaFinal;
+
+	@ManyToOne
+	@JoinColumn(name = "fk_usuario", referencedColumnName = "id_usuario")
+	@JsonBackReference(value = "mensualidades-usuario")
+	private Usuario usuario;
 
 	public Mensualidades() {
 	}

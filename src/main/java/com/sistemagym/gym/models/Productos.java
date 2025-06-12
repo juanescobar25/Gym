@@ -1,5 +1,9 @@
 package com.sistemagym.gym.models;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -19,6 +23,10 @@ public class Productos {
     
     @Column(name = "precio")
     private Double precio;
+
+	@OneToMany(mappedBy = "productos")
+	@JsonManagedReference(value = "ventas-producto")
+	private List<Ventas> ventas;
 
     public Productos() {
     }

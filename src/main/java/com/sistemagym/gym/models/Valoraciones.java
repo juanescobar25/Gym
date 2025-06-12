@@ -2,6 +2,8 @@ package com.sistemagym.gym.models;
 
 import java.sql.Date;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -42,6 +44,11 @@ public class Valoraciones {
 
     @Column(name = "fecha")
     private Date fecha;
+
+	@ManyToOne
+	@JoinColumn(name = "fk_usuario", referencedColumnName = "id_usuario")
+	@JsonBackReference(value = "valoraciones-usuario")
+	private Usuario usuario;
 
 
 	public Valoraciones() {

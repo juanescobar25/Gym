@@ -1,5 +1,8 @@
 package com.sistemagym.gym.models;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sistemagym.gym.Helpers.enums.UsuarioEnum;
 
 import jakarta.persistence.*;
@@ -28,6 +31,18 @@ public class Usuario {
     @Column(name = "tipo_usuario", nullable = false)
     @Enumerated(EnumType.STRING)
     private UsuarioEnum tipoUsuario;
+
+	@OneToMany(mappedBy = "usuario")
+	@JsonManagedReference(value = "valoraciones-usuario")
+	private List<Valoraciones> valoraciones;
+
+	@OneToMany(mappedBy = "usuario")
+	@JsonManagedReference(value = "mensualidades-usuario")
+	private List<Mensualidades> mensualidades;
+
+	@OneToMany(mappedBy = "usuario")
+	@JsonManagedReference(value = "ventas-usuario")
+	private List<Ventas> ventas;
 
 	public Usuario() {
     }
